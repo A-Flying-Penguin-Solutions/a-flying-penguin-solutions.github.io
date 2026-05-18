@@ -1,11 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Name Card — Ali · A Flying Penguin Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{height:100%}
+body{
+  min-height:100%;background:#ddd8cf;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 24px;font-family:'DM Sans',sans-serif;gap:52px;
+}
+
+.page-title{
+  font-family:'Nunito',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.18em;text-transform:uppercase;color:#9a9590;
+}
+
+.row{display:flex;gap:56px;align-items:flex-start;flex-wrap:wrap;justify-content:center}
+
+.card-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}
+
+.card-label{
+  font-size:10.5px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:#b0aaa3;
+}
+
+/* ── CARD BASE (85×54mm → 596×379px) ── */
+.card{
+  width:596px;height:379px;border-radius:9px;
+  position:relative;overflow:hidden;
+  box-shadow:0 16px 56px rgba(0,0,0,.22),0 4px 14px rgba(0,0,0,.12);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.card:hover{
+  transform:translateY(-6px) rotate(.4deg);
+  box-shadow:0 28px 72px rgba(0,0,0,.24),0 8px 20px rgba(0,0,0,.12);
+}
+
+/* ─────────────────────────────
+   FRONT
+───────────────────────────── */
+.front{
+  background:#faf9f7;
+  padding:40px 44px 36px;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+
+/* dashed inset — echoes logo */
+.front::before{
+  content:'';position:absolute;inset:8px;
+  border:1.5px dashed rgba(196,192,187,.45);
+  border-radius:5px;pointer-events:none;
+}
+
+.front-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.front-info{flex:1;padding-top:4px}
+
+.front-name{
+  font-family:'Nunito',sans-serif;font-size:28px;font-weight:900;
+  letter-spacing:-.025em;line-height:1.05;color:#1c1a18;margin-bottom:10px;
+}
+
+.front-title{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  color:oklch(0.52 0.14 220);
+}
+.front-title::before{
+  content:'';width:18px;height:1.5px;background:oklch(0.52 0.14 220);flex-shrink:0;
+}
+
+.front-penguin{width:136px;flex-shrink:0;margin-top:-14px;margin-right:-14px}
+
+.front-mid{display:flex;flex-direction:column;gap:9px;padding:0 2px}
+
+.front-contact{
+  display:flex;align-items:center;gap:12px;
+  font-size:12px;font-weight:400;color:#6b6762;line-height:1;
+}
+
+.dot{width:4px;height:4px;border-radius:50%;background:oklch(0.52 0.14 220);flex-shrink:0}
+
+/* footer strip + QR */
+.front-foot{display:flex;align-items:center;gap:14px}
+
+.foot-strip{flex:1;display:flex;align-items:center;gap:11px}
+
+.foot-line{flex:1;height:0;border-top:1.5px dashed #d8d3cc}
+
+.foot-name{
+  font-family:'Nunito',sans-serif;font-size:9px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:#c4c0bb;white-space:nowrap;
+}
+
+.qr-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;flex-shrink:0}
+
+.qr-box{
+  width:68px;height:68px;border-radius:5px;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;background:#faf9f7;
+}
+.qr-box img,.qr-box canvas{width:68px!important;height:68px!important;display:block!important}
+
+.qr-lbl{
+  display:flex;align-items:center;gap:4px;
+  font-size:7.5px;font-weight:600;letter-spacing:.07em;
+  color:#9a9590;white-space:nowrap;
+}
+
+.wa-dot{width:8px;height:8px;background:#25D366;border-radius:50%;flex-shrink:0}
+
+/* ─────────────────────────────
+   BACK — clean cream
+───────────────────────────── */
+.back{
+  background:#faf9f7;
+  padding:36px 44px;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:flex-start;
+}
+
+.back::before{
+  content:'';position:absolute;inset:8px;
+  border:1.5px dashed rgba(196,192,187,.45);
+  border-radius:5px;pointer-events:none;
+}
+
+.back-wm{
+  width:188px;
+  mix-blend-mode:multiply;
+}
+
+/* ── PRINT ── */
+@media print{
+  body{background:#fff;padding:20mm;gap:10mm;justify-content:flex-start}
+  .page-title,.card-label{display:none}
+  .row{gap:8mm}
+  .card-wrap{gap:4mm}
+  .card{width:85mm;height:54mm;box-shadow:none;border:.3pt solid #ccc}
+  .card:hover{transform:none;box-shadow:none}
+  .front{padding:5mm 5.5mm 4.5mm}
+  .front-name{font-size:9pt}
+  .front-title{font-size:6.5pt}
+  .front-contact{font-size:6.5pt}
+  .front-penguin{width:38mm}
+  .front::before,.back::before{inset:2mm}
+  .foot-name{font-size:5pt}
+  .qr-box{width:13mm;height:13mm}
+  .qr-box img,.qr-box canvas{width:13mm!important;height:13mm!important}
+  .qr-lbl{font-size:4pt}
+  .back-wm{width:42mm}
+  .back{padding:3.5mm 5.5mm}
+}
+</style>
 </head>
 <body>
-    <h1>Hello World</h1>
-</body>
+
+<div class="page-title">Name Card — A Flying Penguin Solutions</div>
+
+<div class="row">
+
+  <!-- FRONT -->
+  <div class="card-wrap">
+    <div class="card front">
+      <div class="front-top">
+        <div class="front-info">
+          <div class="front-name">Ali</div>
+          <div class="front-title">Sales</div>
+        </div>
+        <img class="front-penguin" src="uploads/a-flying-penguin-logo-transparent.png" alt="">
+      </div>
+      <div class="front-mid">
+        <div class="front-contact">
+          <div class="dot"></div>
+          +6014-1234567
+        </div>
+        <div class="front-contact">
+          <div class="dot"></div>
+          <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b72627c6e65257f6e634b6d677262656c7b6e656c7e626525686466256672">[email&#160;protected]</a>
+        </div>
+      </div>
+      <div class="front-foot">
+        <div class="foot-strip">
+          <div class="foot-line"></div>
+          <div class="foot-name">A Flying Penguin Solutions</div>
+          <div class="foot-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-label">Front</div>
+  </div>
+
+  <!-- BACK -->
+  <div class="card-wrap">
+    <div class="card back">
+      <img class="back-wm" src="uploads/a-flying-penguin-logo copy 2.PNG" alt="A Flying Penguin Solutions">
+    </div>
+    <div class="card-label">Back</div>
+  </div>
+
+</div>
+
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
 </html>
