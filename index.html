@@ -168,6 +168,10 @@ footer{background:var(--ink);padding:36px 52px;display:flex;align-items:center;j
 .fli img{width:40px;height:40px;object-fit:contain;mix-blend-mode:multiply}
 .fln{font-family:var(--fh);font-size:13.5px;font-weight:900;color:rgba(245,243,239,.85)}
 .fcp{font-size:12px;color:rgba(245,243,239,.36)}
+.fsm{display:flex;flex-direction:column;gap:6px;text-align:center}
+.fsm-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px}
+.fsm a{font-size:13px;color:rgba(245,243,239,.72);text-decoration:none}
+.fsm a:hover,.fsm a:focus-visible{color:#faf9f7;text-decoration:underline}
 
 /* ── TWEAKS ── */
 #twk-btn{position:fixed;bottom:24px;right:24px;z-index:300;width:44px;height:44px;border-radius:50%;background:var(--ink);border:none;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.22);transition:background .2s,transform .15s}
@@ -490,6 +494,13 @@ html.dark .hwm{mix-blend-mode:screen;filter:invert(1)}
   <div class="flw">
     <div class="fli"><img src="uploads/a-flying-penguin-logo.PNG" alt="Logo"></div>
     <span class="fln">A Flying Penguin Solutions</span>
+  </div>
+  <div class="fsm" role="navigation" aria-label="PeNote sitemap">
+    <span class="fln">PeNote</span>
+    <div class="fsm-links">
+      <a href="/penote/privacy/">Privacy Policy</a>
+      <a href="/penote/support/">Support</a>
+    </div>
   </div>
   <div class="fcp">&copy; 2026 A Flying Penguin Solutions. All rights reserved.</div>
 </footer>
